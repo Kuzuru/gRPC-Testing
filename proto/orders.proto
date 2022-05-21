@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "./orderservice;orderservice";
+
+package orders;
+
+service OrdersAPI {
+  rpc CreateOrderRequest (Order) returns (CreateOrderResponse) {}
+  rpc GetOrders (Filter) returns (GetOrdersRequest) {}
+}
+
+message Order {
+  string Name = 1;
+  string Price = 2;
+  string Category = 3;
+}
+
+message Filter {
+  repeated uint32 Ids = 1;
+}
+
+message CreateOrderResponse {
+  bool IsSuccess = 1;
+}
+
+message GetOrdersRequest {
+  repeated Order list = 1;
+}
